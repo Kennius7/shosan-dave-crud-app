@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const root = require("./routes/root");
 const userRoute = require("./routes/userRoutes");
+const noteRoute = require("./routes/noteRoutes");
 const { logger } = require("./middleware/logger");
 const errorHandler = require("./middleware/errorHandler");
 const cookieParser = require("cookie-parser");
@@ -28,6 +29,7 @@ app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/", root);
 app.use("/users", userRoute);
+app.use("/notes", noteRoute);
 
 
 app.all("*", (req, res) => {
