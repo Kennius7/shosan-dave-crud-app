@@ -2,6 +2,7 @@ const dotenv = require("dotenv");
 const express = require("express");
 const path = require("path");
 const root = require("./routes/root");
+const authRoute = require("./routes/authRoutes");
 const userRoute = require("./routes/userRoutes");
 const noteRoute = require("./routes/noteRoutes");
 const { logger } = require("./middleware/logger");
@@ -28,6 +29,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use("/", express.static(path.join(__dirname, "/public")));
 app.use("/", root);
+app.use("/auth", authRoute);
 app.use("/users", userRoute);
 app.use("/notes", noteRoute);
 

@@ -13,8 +13,8 @@ const getAllNotes = asyncHandler(async (req, res) => {
 })
 
 const createNewNotes = asyncHandler(async (req, res) => {
-    const { user, title, text, username } = req.body;
-    if (!user || !title || !text || !username) {
+    const { user, title, text } = req.body;
+    if (!user || !title || !text) {
         return res.status(400).json({ msg: "All fields are required!" })
     }
 
@@ -24,7 +24,7 @@ const createNewNotes = asyncHandler(async (req, res) => {
         return res.status(409).json({ msg: "Duplicate Notes" });
     }
 
-    const noteObject = { user, title, text, username };
+    const noteObject = { user, title, text };
     const note = await Notes.create(noteObject);
 
     if (note) {
